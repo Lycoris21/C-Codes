@@ -1,0 +1,33 @@
+void initList(LIST *); //initialize the list to be empty
+
+void populateListSetUnsorted(LIST *); //populate the unsorted list without user input
+void populateListSetSorted(LIST *); //populate the sorted list without user input
+void populateListUser(LIST *); //user input population of the list
+void getData(int *); //gets 1 user data input
+
+void displayList(LIST); //displays the whole list 
+void displayAtPos(LIST, int); //displays the data of a given position
+
+void insertFirst(LIST *, int); //insert at first position
+void insertLast(LIST *, int); //insert at last position
+void insertAtPos(LIST *, int, int); //insert at a given position
+void insertSorted(LIST *, int); //insert element at its proper position in a sorted list
+
+void deleteFirst(LIST *); //delete at first position
+void deleteLast(LIST *); //delete at last position
+void deleteAtPos(LIST *, int); //delete at a given position
+void deleteFirstOccur(LIST *, int); //delete the first occurence of a given element
+void deleteAllOccur(LIST *, int); //delete all occurences of a given element
+void deleteDuplicateSorted(LIST *); //delete all duplicate values in a sorted list
+void deleteDuplicateUnsorted(LIST *); //delete all duplicate values in an unsorted list
+
+int findElem(LIST, int); //returns the index of a given element
+int findAverage(LIST); //returns the average value of the given list
+int findMiddleElement(LIST); //returns the data at the middle position of a sorted list
+
+bool isEqual(LIST, LIST); //returns true if two given lists are equal
+bool isMember(LIST, int); //returns true if a given element is found in the list
+
+void sortListSelection(LIST *); //sorts the list using selection sort
+void sortListInsertion(LIST *); //sorts the list using insertion sort
+void sortListBubble(LIST *); //sorts the list using bubble sort

@@ -1,0 +1,77 @@
+#ifndef STACKADT_LINKEDLIST_H
+#define STACKADT_LINKEDLIST_H
+
+typedef enum{FALSE, TRUE} Bool;
+
+typedef struct node{
+    char elem;
+    struct node *link;
+}*Stack;
+
+void initStack(Stack *);
+void push(Stack *, char);
+void pop(Stack *);
+char top(Stack);
+Bool isEmpty(Stack);
+Bool isFull(Stack);
+void printThis(char);
+void printAll(Stack *);
+
+void initStack(Stack *S){
+    (*S) = NULL;
+}
+
+void push(Stack *S, char ch){
+    if(isFull(*S) != TRUE){
+        Stack temp = (Stack) malloc(sizeof(struct node));
+        if(temp != NULL){
+            temp->elem = ch;
+            temp->link = (*S);
+            (*S) = temp; 
+        }
+    }else {
+        printf("Stack is full.\n");
+    }
+}
+
+void pop(Stack *S){
+    if(isEmpty(*S)!=TRUE){
+        Stack temp = (*S);
+        (*S) = temp->link;
+        free(temp);
+    }else {
+        printf("Stack is empty.\n");
+    }
+}
+
+char top(Stack S){
+    return (isEmpty(S)!=TRUE)? (S->elem) : '\0';
+}
+
+Bool isEmpty(Stack S){
+    return (S!=NULL)? FALSE: TRUE;
+}
+
+Bool isFull(Stack S){
+    return FALSE;
+}
+
+void printThis(char ch){
+    printf("%c\n", ch);
+}
+
+void printAll(Stack *S){
+    Stack temp;
+    initStack(&temp);
+    while(isEmpty(*S)!=TRUE){
+        printThis(top(*S));
+        push(&temp, top(*S));
+        pop(S);
+    }   
+    while(isEmpty(temp)!=TRUE){
+        push(S, top(temp));
+        pop(&temp);
+    }   
+}
+
+#endif

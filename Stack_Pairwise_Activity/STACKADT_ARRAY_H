@@ -1,0 +1,72 @@
+#ifndef STACKADT_ARRAY_H
+#define STACKADT_ARRAY_H
+#define MAX 10
+
+typedef enum{FALSE, TRUE} Bool;
+
+typedef struct{
+    char elem[MAX];
+    int top;
+}Stack;
+
+void initStack(Stack *);
+void push(Stack *, char);
+void pop(Stack *);
+char top(Stack);
+Bool isEmpty(Stack);
+Bool isFull(Stack);
+void printThis(char);
+void printAll(Stack *);
+
+void initStack(Stack *S){
+    S->top = -1;
+}
+
+void push(Stack *S, char ch){
+    if(isFull(*S) != TRUE){
+        S->elem[++(S->top)] = ch;
+    }else {
+        printf("Stack is full.\n");
+    }
+}
+
+void pop(Stack *S){
+    if(isEmpty(*S)!=TRUE){
+        S->top--;
+    }else {
+        printf("Stack is empty.\n");
+    }
+}
+
+char top(Stack S){
+    return (isEmpty(S)!=TRUE)? S.elem[S.top] : '\0';
+}
+
+Bool isEmpty(Stack S){
+    return (S.top==-1)? TRUE: FALSE;
+}
+
+Bool isFull(Stack S){
+    return (S.top==MAX-1)? TRUE: FALSE;
+}
+
+void printThis(char ch){
+    printf("%c\n", ch);
+}
+
+void printAll(Stack *S){
+    Stack temp;
+    initStack(&temp);
+    while(isEmpty(*S)!=TRUE){
+        printThis(top(*S));
+        push(&temp, top(*S));
+        pop(S);
+    }   
+    while(isEmpty(temp)!=TRUE){
+        push(S, top(temp));
+        pop(&temp);
+    }   
+}
+
+
+#endif
