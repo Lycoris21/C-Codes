@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct node{
     int data;
@@ -78,10 +79,11 @@ int main(){
     //isMember(L, 21);
     //printf("%s\n", isMember(L, 21)? "TRUE" : "FALSE");
 
-    sortListSelection(&L);
+    //sortListSelection(&L);
 
     //displayAtPos(L, findElem(L, 3));
     displayList(L);
+    displayList(M);
     return 0;
 }
 
@@ -101,7 +103,7 @@ void populateListSetSorted(LIST *A){
     int arr[] = {8, 9, 21, 21, 97};
     int x;
     for(x=0; x < (sizeof(arr)/sizeof(arr[0])); x++){
-        insertFirst(A, arr[x]);
+        insertLast(A, arr[x]);
     }
 }
 
@@ -137,10 +139,16 @@ void displayAtPos(LIST A, int pos){
 }
 
 void insertFirst(LIST *A, int data){
-    LIST temp;
-    
+    LIST temp = (LIST) malloc(sizeof(Nodetype));
+    temp->data = data;
+    temp->link = (*A);
+    (*A) = temp;
 }
 
 void insertLast(LIST *A, int data){
-
+    LIST *trav;
+    for(trav = A; (*trav) != NULL; trav = &(*trav)->link){}
+    (*trav) = (LIST) malloc(sizeof(Nodetype));
+    (*trav)->data = data;
+    (*trav)->link = NULL;
 }
