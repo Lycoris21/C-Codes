@@ -48,12 +48,12 @@ int main(){
     initList(&M);
 
     populateListSetUnsorted(&L);
-    populateListSetSorted(&M);
+    //populateListSetSorted(&M);
     //populateListUser(&L);
 
     //insertFirst(&L, 0);
     //insertLast(&L, 0);
-    //insertAtPos(&L, 0, 3);
+    insertAtPos(&L, 0, 3);
     //insertSorted(&L, 23);
     
     //deleteFirst(&L);
@@ -81,7 +81,8 @@ int main(){
 
     //sortListSelection(&L);
 
-    //displayAtPos(L, findElem(L, 3));
+    displayAtPos(L, 3);
+    //displayAtPos(L, findElem(L, 21));
     displayList(L);
     displayList(M);
     return 0;
@@ -134,7 +135,7 @@ void displayList(LIST A){
 void displayAtPos(LIST A, int pos){
     int x;
     LIST trav;
-    for(trav = A, x=0; x<pos; trav = trav->link){}
+    for(trav = A, x=1; trav != NULL && x<pos; trav = trav->link, x++){}
     printf("%d\n", trav->data);
 }
 
@@ -151,4 +152,18 @@ void insertLast(LIST *A, int data){
     (*trav) = (LIST) malloc(sizeof(Nodetype));
     (*trav)->data = data;
     (*trav)->link = NULL;
+}
+
+void insertAtPos(LIST *A, int data, int pos){
+    int x;
+    LIST *trav, temp;
+    for(trav = A, x=1; (*trav) != NULL && x < pos; trav = &(*trav)->link , x++){}
+    temp = (LIST) malloc(sizeof(Nodetype));
+    temp->data = data;
+    temp->link = (*trav);
+    (*trav) = temp;
+}
+
+void insertSorted(LIST *A, int data){
+
 }
