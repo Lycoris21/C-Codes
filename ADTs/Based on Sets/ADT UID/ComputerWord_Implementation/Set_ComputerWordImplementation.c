@@ -25,9 +25,9 @@ void init(Set *S) {
 }
 
 void displayBitPattern(Set S) {
-    Set mask = 1 << MAX;
+    Set mask = 1;
     
-    for (; mask < S; mask << 1) {
-        printf("%d ", ((S & mask!=0)? 1:0));
+    for (; mask < S; mask = mask << 1) {
+        printf("%d ", ((S & mask)? 1:0));
     }
 }
