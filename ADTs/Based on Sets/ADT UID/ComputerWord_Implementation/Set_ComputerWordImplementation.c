@@ -7,16 +7,15 @@ typedef unsigned int Set;
 
 void init(Set *S);
 void displayBitPattern(Set S);
-
 void insertElem(Set *S, int elem);
 void deleteElem(Set *S, int elem);
 void displayElem(Set S);
 
 int main(void) {
-    Set S = 21;
+    int SetMembers[] = {1,3,5,7,9};
     
-    displayBitPattern(S);
     
+
     return 0;
 }
 
