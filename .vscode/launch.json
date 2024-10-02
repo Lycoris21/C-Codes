@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Christine Ann Dejito/Documents/GitHub/C-Codes",
-      "program": "c:/Users/Christine Ann Dejito/Documents/GitHub/C-Codes/build/Debug/outDebug",
+      "cwd": "c:/Users/Christine Ann Dejito/Documents/GitHub/C-Codes/ADTs/Based on Sets/ADT UID/BitVector_Implementation",
+      "program": "c:/Users/Christine Ann Dejito/Documents/GitHub/C-Codes/ADTs/Based on Sets/ADT UID/BitVector_Implementation/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
