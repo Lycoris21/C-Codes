@@ -75,12 +75,14 @@ void printSet(Set S){
 
 Set *Union(Set A, Set B){
     Set *C = (Set *) malloc(sizeof(Set));
-    int x;
-    for(x=0; x<MAX; x++){
-        if(A[x]==1 || B[x]==1){
-            (*C)[x] = 1;
-        }else{
-            (*C)[x] = 0;
+    if(*C!=NULL){
+        int x;
+        for(x=0; x<MAX; x++){
+            if(A[x]==1 || B[x]==1){
+                (*C)[x] = 1;
+            }else{
+                (*C)[x] = 0;
+            }
         }
     }
     return C;
@@ -88,12 +90,14 @@ Set *Union(Set A, Set B){
 
 Set *Intersection(Set A, Set B){
     Set *C = (Set *) malloc(sizeof(Set));
-    int x;
-    for(x=0; x<MAX; x++){
-        if(A[x]==1 && B[x]==1){
-            (*C)[x] = 1;
-        }else{
-            (*C)[x] = 0;
+    if(*C!=NULL){
+        int x;
+        for(x=0; x<MAX; x++){
+            if(A[x]==1 && B[x]==1){
+                (*C)[x] = 1;
+            }else{
+                (*C)[x] = 0;
+            }
         }
     }
     return C;
@@ -101,12 +105,14 @@ Set *Intersection(Set A, Set B){
 
 Set *Difference(Set A, Set B){
     Set *C = (Set *) malloc(sizeof(Set));
-    int x;
-    for(x=0; x<MAX; x++){
-        if(A[x]==1 && B[x]==0){
-            (*C)[x] = 1;
-        }else{
-            (*C)[x] = 0;
+    if(*C!=NULL){
+        int x;
+        for(x=0; x<MAX; x++){
+            if(A[x]==1 && B[x]==0){
+                (*C)[x] = 1;
+            }else{
+                (*C)[x] = 0;
+            }
         }
     }
     return C;
