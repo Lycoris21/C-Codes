@@ -3,6 +3,7 @@
 #define MAX 10
 
 typedef int Set[MAX];
+typedef enum{FALSE, TRUE} bool;
 
 void insertToSet(Set *S, int data);
 void deleteFromSet(Set *S, int data);
@@ -11,6 +12,7 @@ void printSet(Set S);
 Set *Union(Set A, Set B);
 Set *Intersection(Set A, Set B);
 Set *Difference(Set A, Set B);
+bool isMember(Set A, int data);
 
 int main(){
     Set A = {};
@@ -39,6 +41,7 @@ int main(){
     printf("\n\nDIFFERENCE: ");
     printSet(*(Difference(A, B))); 
 
+    printf("\n\nisMember: %s\n", isMember(A, 7)? "TRUE": "FALSE");
 
     return 0;
 }
@@ -116,4 +119,8 @@ Set *Difference(Set A, Set B){
         }
     }
     return C;
+}
+
+bool isMember(Set A, int data){
+    return (A[data])? TRUE: FALSE;
 }
