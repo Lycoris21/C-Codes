@@ -16,9 +16,29 @@ int main(){
     Set A = {};
     Set B = {};
     populateSet(&A);
-    populateSet(&B);
+    //populateSet(&B);
+    printf("\n\n==========================SET A=====================================");
+    printSet(A);
+    insertToSet(&B, 0);
+    insertToSet(&B, 1);
+    insertToSet(&B, 6);
+    insertToSet(&B, 7);
+    insertToSet(&B, 8);
+    insertToSet(&B, 9);
+    printf("\n\n==========================SET B=====================================");
+    printSet(B);
 
+    //deleteFromSet(&A, 1);
+    //printSet(A);
+    printf("\n\n==========================UNION=====================================");
+    printSet(*(Union(A, B)));
+
+    printf("\n\n==========================INTERSECTION==============================");
+    printSet(*(Intersection(A, B)));
     
+    printf("\n\n==========================DIFFERENCE================================");
+    printSet(*(Difference(A, B))); 
+
 
     return 0;
 }
@@ -35,18 +55,18 @@ void populateSet(Set *S){
     (*S)[0] = 1;
     (*S)[1] = 1;
     (*S)[2] = 1;
-    (*S)[3] = 0;
-    (*S)[4] = 0;
-    (*S)[5] = 1;
+    (*S)[3] = 1;
+    (*S)[4] = 1;
+    (*S)[5] = 0;
     (*S)[6] = 0;
-    (*S)[7] = 1;
+    (*S)[7] = 0;
     (*S)[8] = 0;
-    (*S)[9] = 1;
+    (*S)[9] = 0;
 }
 
 void printSet(Set S){
     int x;
-    printf("==========================SET MEMBERS===============================\n");
+    printf("\n==========================SET MEMBERS===============================\n");
     for(x=0; x<MAX; x++){
         if(S[x]==1){
             printf("%d\n", x);
