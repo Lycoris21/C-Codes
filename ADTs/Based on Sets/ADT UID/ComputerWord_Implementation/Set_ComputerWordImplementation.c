@@ -106,27 +106,20 @@ bool isMember(Set A, int data){
     return A & 1<<data;
 }
 
-/* void displayElems(Set A){
+void displayElems(Set A){
     int mask = 1;
     printf("The current members of the Set are: [ ");
 
-    /* int x;
+    int x;
     for(x=0; x<MAX; x++){
         if((A & 1<<x) > 0){
             printf("%d ", x);
         }
     } 
-
-    while(mask < (1 << MAX)){
-        if((A & mask) > 0){
-            printf("%d ", mask);
-        }
-        mask = mask << 1;
-    }
     printf("]\n");   
-} */
+}
 
-void displayElems(Set A) {
+/* void displayElems(Set A) {
     Set mask = 1;
 
     printf("The current members of the Set are: [ ");
@@ -138,5 +131,4 @@ void displayElems(Set A) {
         mask = mask << 1;
     }
     printf("]\n");
-}
-
+} */
