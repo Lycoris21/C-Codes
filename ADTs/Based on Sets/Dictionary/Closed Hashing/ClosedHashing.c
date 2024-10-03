@@ -15,6 +15,7 @@ void insert(Dictionary, char);
 void delete(Dictionary, char);
 bool isMember(Dictionary, char);
 bool isFull(Dictionary);
+bool canFit80PackingDensity(Dictionary);
 
 int main(){
     Dictionary D;
@@ -42,6 +43,8 @@ int main(){
     printf("\n%s\n", isMember(D, 'J')? "TRUE": "FALSE");
 
     printf("\n%s\n", isFull(D)? "FULL": "NOT FULL");
+
+    printf("\n%s\n", canFit80PackingDensity(D)? "DOES NOT EXCEED 80%% PACKING DENSITY": "EXCEEDS 80%% PACKING DENSITY");
     return 0;
 }
 
@@ -97,3 +100,10 @@ bool isFull(Dictionary A){
     return (x<SIZE)? FALSE: TRUE;
 }
 
+bool canFit80PackingDensity(Dictionary A){
+    int x, count;
+    for(x=count=0; x<SIZE; x++){
+        if(A[x]!=EMPTY) count++;
+    }
+    return (count<=SIZE*.8)? TRUE: FALSE; 
+}
