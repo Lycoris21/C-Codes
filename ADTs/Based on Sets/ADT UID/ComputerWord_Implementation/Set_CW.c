@@ -119,7 +119,8 @@ void displayElems(Set A){
     printf("]\n");   
 }
 
-/* void displayElems(Set A) {
+/* my own idea/logic but it doesnt work haha ill try to make it work soon... someday...
+    void displayElems(Set A) {
     Set mask = 1;
 
     printf("The current members of the Set are: [ ");
