@@ -43,6 +43,7 @@ void sortListInsertion(LIST *); //sorts the list using insertion sort
 void sortListBubble(LIST *); //sorts the list using bubble sort
 
 int main(){
+    
     LIST L, M;
     initList(&L);
     initList(&M);
