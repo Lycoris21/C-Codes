@@ -64,10 +64,8 @@ char getRightLabel(PTtree A, Node parent){
     char temp = '\0';
     int x;
     for(x=0; x<MAX; x++){
-        if(A[x].parent == parent){
-            if(A[x].label > temp){
-                temp = A[x].label;
-            }
+        if(A[x].parent == parent && A[x].label > temp){
+            temp = A[x].label;
         }
     }
     return temp;
