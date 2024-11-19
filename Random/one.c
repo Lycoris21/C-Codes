@@ -1,21 +1,21 @@
-#include <stdio.h>
-#define MAX 10
+#include <stdio.h> //this
+#define MAX 10 //this
 #define ROOT -1
 #define NOPE  -2
 
-typedef int Node;
+typedef int Node; //this
 
 typedef struct{
     Node parent;
     char label;
-}PTnode;
+}PTnode; //this whole thing
 
-typedef PTnode PTtree[MAX];
+typedef PTnode PTtree[MAX]; //this
 
 void initTree(PTtree *);
 void insertTree(PTtree *, int, int, char);
 void displayTree(PTtree);
-char getRightLabel(PTnode *, Node parent);
+char getRightLabel(PTnode *, Node parent); //this
 
 int main(){
     PTtree T = {}; 
@@ -33,7 +33,7 @@ int main(){
     insertTree(&T, 8, 2, 'G');
     displayTree(T);
 
-    //printf("Label: %c\n", getRightLabel());
+    printf("Label: %c\n", getRightLabel(&T[0], ));
     return 0;
 }
 
@@ -60,6 +60,6 @@ void displayTree(PTtree A){
     }
 }
 
-char getRightLabel(PTnode *, Node parent){
+char getRightLabel(PTnode *A, Node parent){
 
 }
