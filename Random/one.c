@@ -15,7 +15,7 @@ typedef PTnode PTtree[MAX]; //this
 void initTree(PTtree *);
 void insertTree(PTtree *, int, int, char);
 void displayTree(PTtree);
-char getRightLabel(PTnode *, Node parent); //this
+char getRightLabel(PTtree, Node parent); //this
 
 int main(){
     PTtree T = {}; 
@@ -60,6 +60,6 @@ void displayTree(PTtree A){
     }
 }
 
-char getRightLabel(PTnode *A, Node parent){
+char getRightLabel(PTtree A, Node parent){
 
 }
