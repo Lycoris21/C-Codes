@@ -33,7 +33,7 @@ int main(){
     insertTree(&T, 8, 2, 'G');
     displayTree(T);
 
-    printf("Label: %c\n", getRightLabel(&T[0], ));
+    printf("Rightmost Child Label: %c\n", getRightLabel(T, 5));
     return 0;
 }
 
@@ -61,5 +61,14 @@ void displayTree(PTtree A){
 }
 
 char getRightLabel(PTtree A, Node parent){
-
+    char temp = '\0';
+    int x;
+    for(x=0; x<MAX; x++){
+        if(A[x].parent == parent){
+            if(A[x].label > temp){
+                temp = A[x].label;
+            }
+        }
+    }
+    return temp;
 }
