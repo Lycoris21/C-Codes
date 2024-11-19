@@ -16,9 +16,11 @@ typedef struct node {
     struct node *next; // Set to right child if used as tree
 } *BST;
 
-void convertBst2List(BST *A);
+void convertBst2List(BST, BST *, BST *);
+//void convertBst2List(BST *);
 void initBST(BST *);
 void insert(BST *, char *, char *, unsigned int);
+void preorder(BST);
 void display(BST);
 
 int main(){
@@ -31,8 +33,10 @@ int main(){
     insert(&L, "Kwesten", "Ann", 12);
     insert(&L, "Kwesten", "Ann", 18);
     insert(&L, "Kwesten", "Ann", 15);
-    display(L);
-    convertBst2List(&L);
+    preorder(L);
+    BST prev = NULL;
+    convertBst2List(L, &prev, &prev);
+    //convertBst2List(&L);
     printf("\n");
     display(L);
     return 0;
@@ -59,22 +63,64 @@ void insert(BST *A, char *fname, char* lname, unsigned int ID){
     (*trav)->next = NULL;
 }
 
-void display(BST A){
+void preorder(BST A){
     if(A != NULL){
         printf("%d ", A->stud.ID);
-        display(A->prev);
-        display(A->next);
+        preorder(A->prev);
+        preorder(A->next);
     }
 }
 
-void convertBst2List(BST *A){
-    if((*A)->prev != NULL){
-        convertBst2List(&(*A)->prev);
-    }else if((*A)->next != NULL){
-        convertBst2List(&(*A)->next);
-    }
-    else{
-        (*A)->next = *A;
-        (*A) = NULL;
+void display(BST A){
+    BST trav;
+    for(trav = A; trav != NULL; trav = trav->next){
+        printf("%d ", trav->stud.ID);
     }
 }
+
+/* Convert the BST to a doubly linked list in place */
+void convertBst2List(BST t, BST *prev, BST *head) {
+    if (t != NULL) {
+        // Recurse on the left subtree
+        convertBst2List(t->prev, prev, head);
+
+        // Adjust the pointers to form the doubly linked list
+        if (*prev != NULL) {
+            (*prev)->next = t;   // Link previous node to current node
+            t->prev = *prev;     // Link current node to previous node
+        } else {
+            // If this is the first node, it becomes the head of the list
+            *head = t;
+        }
+        *prev = t;  // Update previous node to current node
+
+        // Recurse on the right subtree
+        convertBst2List(t->next, prev, head);
+    }
+}
+
+/* void convertBst2List(BST *A, BST *prev){
+    if((*A) != NULL){
+        convertBst2List(&(*A)->prev, prev);
+        prev = *A;
+        convertBst2List(&(*A)->next, prev);
+        (*A)->next = prev;
+    }
+}
+ */
+/* void convertBst2List(BST *root, BST *prev) {
+    if (*root == NULL) return;
+
+    // Recursively traverse the left subtree
+    convertBst2List(&(*root)->prev, prev);
+
+    // Process the current node
+    (*root)->prev = *prev; // Nullify the left child
+    if (*prev != NULL) {
+        (*prev)->next = *root; // Link previous node to current node
+    }
+    *prev = *root; // Update previous node to the current one
+
+    // Recursively traverse the right subtree
+    convertBst2List(&(*root)->next, prev);
+} */
