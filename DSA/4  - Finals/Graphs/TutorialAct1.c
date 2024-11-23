@@ -1,3 +1,9 @@
+/* 
+This is about adjacency matrix and list, 
+defining, initializing, populating, displaying and converting  
+*/
+
+
 #include <stdio.h>
 #define MAX_VERTEX 8
 #define SENTINEL INT_MAX
@@ -33,13 +39,13 @@ typedef struct{
 
 void initMatrix(directedAdjMatrix *);
 void populateMatrix(directedAdjMatrix *);
-void display(directedAdjMatrix);
+void displayMatrix(directedAdjMatrix);
 
 int main(){
     directedAdjMatrix M;
     initMatrix(&M);
     populateMatrix(&M);
-    display(M);
+    displayMatrix(M);
     return 0;
 }
 
@@ -89,7 +95,7 @@ void populateMatrix(directedAdjMatrix *A){ //unweighted graph 1 for exist
     A->edgeCount = 10; */
 }
 
-void display(directedAdjMatrix A){
+void displayMatrix(directedAdjMatrix A){
     int x, y, vertex;
     printf("ADJACENCY MATRIX\n  ");
     for(y=0, vertex = 65; y<MAX_VERTEX; y++){
