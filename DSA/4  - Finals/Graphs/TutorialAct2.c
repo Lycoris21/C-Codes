@@ -1,10 +1,9 @@
 /* 
 
-This is about adjacency matrix and list, 
-defining, initializing, populating, displaying and converting  
+This is about dijktra's shortest path algorithm
+using adjacency matrix
 
 */
-
 
 #include <stdio.h>
 #define MAX_VERTEX 8
@@ -12,27 +11,13 @@ defining, initializing, populating, displaying and converting
 
 typedef char vertexType; //vertices are characters A B C D E F G H
 typedef int labelType; //labels/weight for the edges
+typedef enum{FALSE, TRUE} bool;
 
 typedef struct{
     vertexType tail; //the tail of the arc
     vertexType head; //head of the arc
     labelType mLabel; //or weight
-}edgeType; //edges for adjacency matrix
-
-typedef struct{
-    vertexType adj; 
-    labelType lLabel;
-}adjType; //edges for adjacency list
-
-typedef struct node{
-    adjType info;
-    struct node * link;
-}*nodePtrType; //nodes for adjacency list
-
-typedef struct{
-    nodePtrType List[MAX_VERTEX]; //array of node pointers for adjacency list
-    int edgeCount; //number of edges
-}directedAdjList; 
+}edgeType;
 
 typedef struct{
     labelType matrix[MAX_VERTEX][MAX_VERTEX]; //2d array for matrix
@@ -40,6 +25,8 @@ typedef struct{
 }directedAdjMatrix;
 
 void initMatrix(directedAdjMatrix *);
+void initVisited(bool**);
+void initSPRecord(int*);
 void populateMatrix(directedAdjMatrix *);
 void displayMatrix(directedAdjMatrix);
 
@@ -48,6 +35,11 @@ int main(){
     initMatrix(&M);
     populateMatrix(&M);
     displayMatrix(M);
+    bool visitedArr[MAX_VERTEX];
+    initVisited(&visitedArr);
+    int SPRecord[MAX_VERTEX];
+    //initSPRecord(&SPRecord);
+
     return 0;
 }
 
@@ -61,25 +53,36 @@ void initMatrix(directedAdjMatrix *A){
     }
 }
 
+void initVisited(bool **visited){
+    int x;
+    for(x=0; x<MAX_VERTEX; x++){
+        (*visited)[x] = FALSE;
+    }
+}
+void initSPRecord(int*);
+
 void populateMatrix(directedAdjMatrix *A){ //unweighted graph 1 for exist
-    edgeType Edges[MAX_VERTEX * MAX_VERTEX] = {{'A', 'B', 1},
-                                {'A', 'H', 1},
-                                {'B', 'F', 1},
-                                {'C', 'A', 1},
-                                {'D', 'H', 1},
-                                {'D', 'E', 1},
-                                {'E', 'B', 1},
-                                {'E', 'H', 1},
-                                {'F', 'C', 1},
-                                {'G', 'A', 1},
-                                {'G', 'C', 1},
-                                {'G', 'F', 1}
+    edgeType Edges[MAX_VERTEX * MAX_VERTEX] = {
+                                {'A', 'B', 4},
+                                {'A', 'H', 8},
+                                {'B', 'C', 8},
+                                {'B', 'H', 11},
+                                {'C', 'D', 7},
+                                {'C', 'F', 4},
+                                {'C', 'I', 2},
+                                {'D', 'E', 9},
+                                {'D', 'F', 14},
+                                {'E', 'F', 10},
+                                {'F', 'G', 2},
+                                {'G', 'I', 6},
+                                {'G', 'H', 1},
     };
 
     //A=0 B=1 C=2 D=3 E=4 F=5 G=6 H=7
     int x, size = sizeof(Edges)/sizeof(Edges[0]);
     for(x = 0; x<size; x++){
         A->matrix[(Edges[x].tail - 'A')][(Edges[x].head - 'A')] = Edges[x].mLabel;
+        A->matrix[(Edges[x].head - 'A')][(Edges[x].tail - 'A')] = Edges[x].mLabel;
     }
 }
 
