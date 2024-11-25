@@ -1,6 +1,8 @@
     /*
+    Data Structure: Parent Pointer
+    Given the node and the tree, function getRightSiblingLabel() will return to the calling function the label of the right sibling of the given node. If the right sibling does not exist, return a non-alphanumeric value. 
 
-    Given the Tree and a Node, get the label of the right sibling of the given node.
+    PS: label of right sibling (immediately to the right) NOT RIGHTMOST SIBLING
 
     */
 
