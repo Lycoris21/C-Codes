@@ -56,7 +56,7 @@ int main(){
     ListBST bst;
     initBST(&bst);
     populateBST(&bst);
-    printf("\n=====BST=====\n");
+    printf("=====BST=====\n");
     preorderBST(bst);
 
     ListBST list = convertBst2List(&bst);
@@ -162,26 +162,29 @@ void preorderBST(ListBST B){
 }
 
 ListBST convertBst2List(ListBST *B){
-    ListBST *list = NULL, *trav, temp;
+    ListBST list = NULL, *trav, temp;
     //deleteMax from BST and insert first to List
-    //while(*B != NULL){
+    while((*B) != NULL){
         while((*B)->next != NULL){
             trav = B;
             while((*trav)->next != NULL){
                 trav = &(*trav)->next;
             }
-            insertFirst(list, (*trav)->stud);
+            insertFirst(&list, (*trav)->stud);
             temp = (*trav);
             (*trav) = (*trav)->prev;
             free(temp);
         }
-    /*     (*B) = NULL;
-    } */
-    return *list;
+        insertFirst(&list, (*B)->stud);
+        temp = (*B);
+        (*B) = (*B)->prev;
+        free(temp);
+    } 
+    return list;
 }
 
 void insertFirst(ListBST *l, studRec s){
-    ListBST temp;
+    ListBST temp = (ListBST) malloc(sizeof(struct node));
     temp->stud = s;
     temp->prev = NULL;
     temp->next = *l;
