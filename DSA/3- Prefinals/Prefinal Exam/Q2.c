@@ -30,8 +30,8 @@ CONSTRAINTS:
 
 typedef struct{
     char name[30];
-    char ID[10]; 
-    //int ID;
+    //char ID[10]; 
+    int ID;
     char course[8];
     int yrLevel;
 }studRec;
@@ -49,14 +49,19 @@ void initBST(ListBST *);
 void populateBST(ListBST *);
 void insertBST(ListBST *, studRec);
 void preorderBST(ListBST);
-void convertBst2List(ListBST *);
+ListBST convertBst2List(ListBST *);
+void insertFirst(ListBST *, studRec);
 
 int main(){
     ListBST bst;
     initBST(&bst);
     populateBST(&bst);
+    printf("\n=====BST=====\n");
     preorderBST(bst);
-    //convertBst2List(&bst);
+
+    ListBST list = convertBst2List(&bst);
+    printf("\n=====LIST=====\n");
+    preorderBST(list);
     return 0;
 }
 
@@ -64,7 +69,7 @@ void initBST(ListBST *B){
     (*B) = NULL;
 }
 
-void populateBST(ListBST *B){
+/* void populateBST(ListBST *B){
     studRec arr[] = {
                     {"Kwesten", "21", "BSCS", 2},
                     {"Kwesten", "15", "BSCS", 2},
@@ -81,9 +86,9 @@ void populateBST(ListBST *B){
     for(x = 0; x < size; x++){
         insertBST(B, arr[x]);
     }
-}
+} */
 
-/* void populateBST(ListBST *B){
+void populateBST(ListBST *B){
     studRec arr[] = {
                     {"Kwesten", 21, "BSCS", 2},
                     {"Kwesten", 15, "BSCS", 2},
@@ -100,9 +105,9 @@ void populateBST(ListBST *B){
     for(x = 0; x < size; x++){
         insertBST(B, arr[x]);
     }
-} */
+}
 
-void insertBST(ListBST *B, studRec data){
+/* void insertBST(ListBST *B, studRec data){
     ListBST *trav = B;
     while((*trav) != NULL){
         //printf("Inserting ID: %s into BST\n", data.ID);
@@ -120,9 +125,9 @@ void insertBST(ListBST *B, studRec data){
     (*trav)->stud.yrLevel = data.yrLevel;
     (*trav)->prev = NULL;
     (*trav)->next = NULL;
-}
+} */
 
-/* void insertBST(ListBST *B, studRec data){
+void insertBST(ListBST *B, studRec data){
     ListBST *trav = B;
     while((*trav) != NULL){
         if(data.ID > (*trav)->stud.ID){
@@ -138,26 +143,47 @@ void insertBST(ListBST *B, studRec data){
     (*trav)->stud.yrLevel = data.yrLevel;
     (*trav)->prev = NULL;
     (*trav)->next = NULL;
-} */
+}
 
-void preorderBST(ListBST B){
+/* void preorderBST(ListBST B){
     if(B != NULL){
         printf("ID: %s\n", B->stud.ID);
         preorderBST(B->prev);
         preorderBST(B->next);
     } 
-}
+} */
 
-/* void preorderBST(ListBST B){
+void preorderBST(ListBST B){
     if(B != NULL){
         printf("ID: %d\n", B->stud.ID);
         preorderBST(B->prev);
         preorderBST(B->next);
     } 
-} */
+}
 
-void convertBst2List(ListBST *B){
-    ListBST *list = NULL, *temp = B;
-    //insert first
-    while (*temp) != NULL; 
+ListBST convertBst2List(ListBST *B){
+    ListBST *list = NULL, *trav, temp;
+    //deleteMax from BST and insert first to List
+    //while(*B != NULL){
+        while((*B)->next != NULL){
+            trav = B;
+            while((*trav)->next != NULL){
+                trav = &(*trav)->next;
+            }
+            insertFirst(list, (*trav)->stud);
+            temp = (*trav);
+            (*trav) = (*trav)->prev;
+            free(temp);
+        }
+    /*     (*B) = NULL;
+    } */
+    return *list;
+}
+
+void insertFirst(ListBST *l, studRec s){
+    ListBST temp;
+    temp->stud = s;
+    temp->prev = NULL;
+    temp->next = *l;
+    (*l) = temp;
 }
