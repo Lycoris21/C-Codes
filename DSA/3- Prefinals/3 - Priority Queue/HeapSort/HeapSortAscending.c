@@ -11,6 +11,7 @@ void insert(MaxHeap *, int);
 int deleteMax(MaxHeap *);
 void maxHeapifySubtree(MaxHeap *, int);
 void maxHeapifyAll(MaxHeap *);
+void heapSortAsc(MaxHeap *);
 void display(MaxHeap);
 
 int main(){
@@ -29,6 +30,11 @@ int main(){
     printf("\n\n=====After deleteMax()=====\n");
     printf("root: %d\n", deleteMax(&H));
     display(H);
+
+    printf("\n\n=====Heapsort Ascending=====\n");
+    heapSortAsc(&H);
+    display(H);
+
     return 0;
 }
 
@@ -73,7 +79,8 @@ int deleteMax(MaxHeap *A){
     int max = -1;
     if(A->last_ndx >=0){
         max= A->Elem[0];
-        A->Elem[0] = A->Elem[A->last_ndx--];
+        A->Elem[0] = A->Elem[A->last_ndx];
+        A->Elem[A->last_ndx--] = max;
         maxHeapifySubtree(A, 0);
     }
     return max;
@@ -106,4 +113,12 @@ void display(MaxHeap A){
     for(x=0; x <= A.last_ndx; x++){
         printf("%d - ", A.Elem[x]);
     }
+}
+
+void heapSortAsc(MaxHeap *A){
+    int index = A->last_ndx;
+    while(A->last_ndx >= 0){
+        deleteMax(A);  
+    }
+    A->last_ndx = index;
 }

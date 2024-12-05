@@ -83,7 +83,8 @@ int deleteMin(MinHeap *A){
     int min = -1;
     if(A->last_ndx >= 0){
         min = A->Elem[0];
-        A->Elem[0] = A->Elem[A->last_ndx--];
+        A->Elem[0] = A->Elem[A->last_ndx];
+        A->Elem[A->last_ndx--] = min;
         minHeapifySubtree(A, 0);
     }
     return min;
@@ -92,14 +93,14 @@ int deleteMin(MinHeap *A){
 void minHeapifySubtree(MinHeap *A, int root){
     int parent = root;
     int LC = parent * 2 + 1;
-    int small = (LC+1 < A->last_ndx && A->Elem[LC+1] < A->Elem[LC]) ? LC+1 : LC;
-    while(parent <= (A->last_ndx - 1) /2 && A->Elem[parent] > A->Elem[small]){
+    int small = (LC+1 <= A->last_ndx && A->Elem[LC+1] < A->Elem[LC]) ? LC+1 : LC;
+    while(small <= A->last_ndx && A->Elem[parent] > A->Elem[small]){
         int temp = A->Elem[parent];
         A->Elem[parent] = A->Elem[small];
         A->Elem[small] = temp;
         parent = small;
         LC = parent * 2 + 1;
-        small = (LC+1 < A->last_ndx && A->Elem[LC+1] < A->Elem[LC]) ? LC+1 : LC;     
+        small = (LC+1 <= A->last_ndx && A->Elem[LC+1] < A->Elem[LC]) ? LC+1 : LC;     
     }
 }
 
