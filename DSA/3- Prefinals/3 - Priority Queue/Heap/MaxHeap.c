@@ -22,6 +22,7 @@ int main(){
     insert(&H, 2);
     insert(&H, 9);
     insert(&H, 3);
+    
     printf("=====MaxHeap=====\n");
     maxHeapifyAll(&H);
     display(H);

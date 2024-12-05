@@ -22,19 +22,15 @@ int main(){
     insert(&H, 2);
     insert(&H, 9);
     insert(&H, 3);
-   /*  insert(&H, 1);
-    insert(&H, 4);
-    insert(&H, 3);
-    insert(&H, 2);
-    insert(&H, 7);
-    insert(&H, 6); */
-    minHeapifyAll(&H);
+   
+    printf("=====MaxHeap=====\n");
+    maxHeapifyAll(&H);
+    display(H);
+    
+    printf("\n\n=====After deleteMax()=====\n");
+    printf("root: %d\n", deleteMax(&H));
     display(H);
 
-    int root = deleteMin(&H);
-    printf("\nroot: %d\n", root);
-
-    display(H);
     return 0;
 }
 
