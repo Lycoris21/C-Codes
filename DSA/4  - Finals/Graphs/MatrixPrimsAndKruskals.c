@@ -8,10 +8,10 @@ typedef int LabelAdjMat[MAX][MAX];
 typedef struct{
 	int u, v; //representing edge (u,v)
 	int weight;
-}edgetype;
+}edgeType;
 
 typedef struct{
-	edgetype edges[MAX_EDGES];
+	edgeType edges[MAX_EDGES];
 	int lastNdx;
 }minHeapOrList;
 
@@ -39,7 +39,7 @@ typedef struct{
 		
 		
 // Prim's:
-	// -additional Data Structure: bit-vector or computer word
+	// -additional Data Structure: SET bit-vector or computer word for visited vertices 	list
 	// MST Prims(LabelAdjMat A, vertex startV)
 	// Given: 
 		// 1) Graph G = (V, E)
@@ -49,7 +49,6 @@ typedef struct{
 		// 2) While (U!=V)
 				// 1) Find the minimum cost edge (u,v) such that u is an element of U and v is an element of V-U
 				// 2) Add v to U
-				//
 				
 				
 //Kruskal's
@@ -70,9 +69,9 @@ typedef struct{
 // fuction prototypes:
 minHeapOrList createMinHeap();
 void initMinHeap(minHeapOrList *);
-void insertMinHeap(minHeapOrList *, edgetype);
+void insertMinHeap(minHeapOrList *, edgeType);
 
-edgetype deleteMinHeap(minHeapOrList *);
+edgeType deleteMinHeap(minHeapOrList *);
 void minHeapifySubtree(minHeapOrList *, int);
 		
 				
@@ -83,7 +82,8 @@ int main(){
 }   
 
 minHeapOrList createMinHeap(){
-	minHeapOrList h = createMinHeap(&h);
+	minHeapOrList h;
+	initMinHeap(&h);
 		
 	return h;
 }
@@ -92,4 +92,6 @@ void initMinHeap(minHeapOrList *H){
 	H->lastNdx = -1;
 }
 
-
+void insertMinHeap(minHeapOrList *H, edgeType edge){
+	
+}
