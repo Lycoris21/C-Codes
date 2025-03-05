@@ -14,6 +14,8 @@ void bubbleSort(int [], int);
 void insertionSort(int [], int);
 
 void combSort(int [], int);
+void shellSortShifting(int [], int);
+void shellSortSwapping(int [], int);
 
 void gnomeSort(int [], int);
 void strandSortArr(int [], int);
@@ -34,7 +36,9 @@ int main(){
     //bubbleSort(arr, size);
     //insertionSort(arr, size);
 
-    combSort(arr, size);
+    //combSort(arr, size);
+    //shellSortShifting(arr, size);
+    shellSortSwapping(arr, size);
     
     //gnomeSort(arr, size);
     //strandSortArr(arr, size);
@@ -122,6 +126,38 @@ void combSort(int arr[], int size){
     printf("\n\n");
 }
 
+void shellSortShifting(int arr[], int size){
+    int gap, x, y, temp;
+    for(gap = size/2; gap>0; gap/=2){
+        for(x=gap; x<size; x++){
+            temp = arr[x];
+            for(y=x; y >= gap && arr[y-gap] > temp; y-=gap){
+                arr[y] = arr[y-gap];
+            }
+            arr[y] = temp;
+        }
+    }
+    printf("Shell Sort\n");
+    displayArr(arr, size);
+    printf("\n\n");
+}
+
+void shellSortSwapping(int arr[], int size){
+    int gap, x, y, temp;
+    for(gap = size/2; gap>0; gap/=2){
+        for(x=gap; x<size; x++){
+            for(y=x; y >= gap && arr[y] < arr[y-gap]; y-=gap){
+                temp = arr[y];
+                arr[y] = arr[y-gap];
+                arr[y-gap] = temp;
+            }
+            
+        }
+    }
+    printf("Shell Sort\n");
+    displayArr(arr, size);
+    printf("\n\n");
+}
 void gnomeSort(int arr[], int size){
     int i=0, temp;
     while(i<size){
