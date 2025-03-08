@@ -22,18 +22,16 @@ int main() {
 List TwoWaySortMerge(List A, List B){
     List C;
     C.count = 0;
-    int x, y, z;
-    x = y = z = 0;
+    int x, y;
+    x = y = 0;
     while(x<A.count && y<B.count){
-        C.elem[z++] = (A.elem[x] < B.elem[y])? (A.elem[x++]) : (B.elem[y++]);
-        C.count++;
+        C.elem[(C.count)++] = (A.elem[x] < B.elem[y])? (A.elem[x++]) : (B.elem[y++]);
     }
     if(x==A.count){
         A = B;
     }
     while(y<A.count){
-        C.elem[z++] = A.elem[y++];
-        C.count++;
+        C.elem[(C.count)++] = A.elem[y++];
     }
     return C;
 }
