@@ -47,15 +47,13 @@ void lomutoQuickSort(int arr[], int start, int end){
 
 int lomutoPartition(int arr[], int start, int end){
     int x = start, y = start-1, pivot = arr[end];
-    if(start<end){
-        while(x<=end){
-            if(arr[x]<=pivot){
-                int temp = arr[++y];
-                arr[y] = arr[x];
-                arr[x] = temp;
-            }
-            x++;
+    while(x<=end){
+        if(arr[x]<=pivot){
+            int temp = arr[++y];
+            arr[y] = arr[x];
+            arr[x] = temp;
         }
+        x++;
     }
     return y;
 }
