@@ -52,8 +52,9 @@ int lomutoPartition(int arr[], int start, int end){
             if(arr[x]<=pivot){
                 int temp = arr[++y];
                 arr[y] = arr[x];
-                arr[x++] = temp;
+                arr[x] = temp;
             }
+            x++;
         }
     }
     return y;
