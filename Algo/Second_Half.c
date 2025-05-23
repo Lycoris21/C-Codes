@@ -10,6 +10,11 @@ typedef struct node{
     struct node* next;
 }*List;
 
+void minHeapifySubtree(int [], int, int);
+void maxHeapifySubtree(int [], int, int);
+void minHeapifyAll(int [], int);
+void maxHeapifyAll(int [], int);
+
 void quickSort(int [], int, int);
 int lomutoPartition(int [], int, int);
 int hoarePartition(int [], int, int);
@@ -23,7 +28,7 @@ List arrToLL(int [], int);
 
 
 int main(){
-    int arr[] = {5, 0, 4, 2, 5, 1, 5, 2, 0};
+    int arr[] = {9, 4, 10, 3, 15, 7, 20, 17, 2, 5};
     int size = sizeof(arr)/sizeof(arr[0]);
     
     List L = arrToLL(arr, size);
@@ -31,9 +36,16 @@ int main(){
     //quickSort(arr, 0, size-1);
     //printf("Quick Sort\n");
     
-    countingSort(arr, size);
-    printf("Counting Sort\n");
+    //countingSort(arr, size);
+    //printf("Counting Sort\n");
     
+    //minHeapifySubtree(arr, size, 0);
+    //minHeapifyAll(arr, size);
+    //printf("Min Heapify\n");
+    
+    maxHeapifySubtree(arr, size, 0);
+    //maxHeapifyAll(arr, size);
+    printf("Max Heapify\n");
     
     displayArr(arr, size);
     printf("\n\n");
@@ -44,6 +56,62 @@ int main(){
     //printf("\n\nLinked List\n");
     //displayLL(L);
     return 0;
+}
+
+void minHeapifySubtree(int arr[], int size, int root){
+    int parent = (size-1)/2;
+    int LC = (parent*2)+1;
+    int RC = (LC+1 < size)? LC+1 : LC;
+    int smaller;
+    
+    while(parent>=0 && LC < size){
+        smaller = (arr[LC] <= arr[RC]) ? LC : RC;
+        if(arr[smaller] < arr[parent]){
+            int temp = arr[smaller];
+            arr[smaller] = arr[parent];
+            arr[parent] = temp;
+        }
+        parent--;
+        LC = (parent*2)+1;
+        RC = (LC+1 < size)? LC+1 : LC;
+        
+    }
+}
+
+void maxHeapifySubtree(int arr[], int size, int root){
+    int parent = root;
+    int LC = (parent*2)+1;
+    int RC = (LC+1 < size)? LC+1 : LC;
+    int big;
+    while(parent < size && LC < size){
+        big = (arr[LC] >= arr[RC]) ? LC : RC;
+            int temp = arr[big];
+            arr[big] = arr[parent];
+            arr[parent] = temp;
+        parent = big;
+        LC = (parent*2)+1;
+        RC = (LC+1 < size)? LC+1 : LC;
+    }
+}
+
+void minHeapifyAll(int arr[], int size){
+    int x;
+    for(x = size/2; x>=0; x--){
+        minHeapifySubtree(arr, size, x);
+    }
+}
+
+void maxHeapifyAll(int arr[], int size){
+    int x;
+    for(x = size/2; x>=0; x--){
+        maxHeapifySubtree(arr, size, x);
+    }
+}
+
+void heapSort(int arr[], int size){
+    //maxHeapifyAll
+    //deleteAll
+    //set size into original size
 }
 
 void quickSort(int arr[], int start, int end){
